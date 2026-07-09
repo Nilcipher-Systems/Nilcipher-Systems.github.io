@@ -42,7 +42,7 @@ const observer = new IntersectionObserver(
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        observer.unobserve(entry.target); // reveal once, then stop watching
+        observer.unobserve(entry.target);
       }
     });
   },
@@ -50,3 +50,21 @@ const observer = new IntersectionObserver(
 );
 
 revealEls.forEach((el) => observer.observe(el));
+
+// ===== Skill bar fill on scroll =====
+const skillFills = document.querySelectorAll(".skill-fill");
+
+const skillObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const fill = entry.target;
+        fill.style.width = fill.dataset.level + "%";
+        skillObserver.unobserve(fill);
+      }
+    });
+  },
+  { threshold: 0.4 }
+);
+
+skillFills.forEach((fill) => skillObserver.observe(fill));
