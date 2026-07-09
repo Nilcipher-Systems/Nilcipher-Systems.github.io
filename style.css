@@ -515,3 +515,10 @@ h1 {
   .terminal { max-width: 100%; }
   .terminal-body { font-size: 0.78rem; }
 }
+
+/* ===== Giscus comments ===== */
+.giscus-wrap {
+  max-width: 800px;
+  margin: 20px auto 0;
+  text-align: left;
+}
