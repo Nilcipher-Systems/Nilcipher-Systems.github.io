@@ -17,14 +17,26 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg) 45%, var(--bg-bottom) 100%);
-  background-attachment: fixed;
+  background-color: var(--bg); /* solid fallback so mobile never shows white */
   color: var(--text);
   font-family: 'Segoe UI', system-ui, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+}
+
+/* Full-viewport fixed gradient layer.
+   Using a fixed pseudo-element instead of `background-attachment: fixed`,
+   which mobile browsers (iOS Safari / Android Chrome) render unreliably —
+   that was causing the page to show white below the first screen on phones. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg) 45%, var(--bg-bottom) 100%);
+  pointer-events: none;
 }
 
 /* ===== Ambient background ===== */
