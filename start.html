@@ -26,6 +26,11 @@
       text-transform: uppercase; z-index: 10; transition: color 0.2s;
     }
     .back-link:hover { color: var(--pink); }
+    .step-eyebrow {
+      display: inline-block; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--red); border: 1px solid rgba(200,50,74,0.4); border-radius: 20px;
+      padding: 4px 14px; margin-bottom: 12px;
+    }
     .category-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px; max-width: 900px; margin: 10px auto 0;
@@ -48,40 +53,21 @@
     .bundles.show { display: block; animation: fadeUp 0.5s ease; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     .bundle-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 22px; max-width: 950px; margin: 0 auto;
     }
     .bundle {
       background: linear-gradient(160deg, var(--surface), var(--surface-2));
       border: 1px solid rgba(200, 50, 74, 0.15); border-radius: 16px;
-      padding: 30px 24px; text-align: left; position: relative;
+      padding: 28px 24px; text-align: left;
     }
     .bundle-name { color: var(--pink); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 1rem; }
-    .bundle-price { font-size: 2.4rem; font-weight: 800; margin: 8px 0 4px; color: var(--text); }
-    .bundle-deposit { font-size: 0.8rem; color: var(--red); margin-bottom: 16px; letter-spacing: 1px; }
-    .bundle ul { list-style: none; margin-bottom: 20px; }
-    .bundle li { font-size: 0.9rem; color: var(--muted); padding: 6px 0; border-bottom: 1px solid rgba(200,50,74,0.1); }
+    .bundle-price { font-size: 2.2rem; font-weight: 800; margin: 8px 0 2px; color: var(--text); }
+    .bundle-deposit { font-size: 0.78rem; color: var(--red); margin-bottom: 14px; letter-spacing: 1px; }
+    .bundle ul { list-style: none; }
+    .bundle li { font-size: 0.88rem; color: var(--muted); padding: 5px 0; border-bottom: 1px solid rgba(200,50,74,0.1); }
     .bundle li::before { content: "✓"; color: var(--red); font-weight: 700; margin-right: 8px; }
-    .pay-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
-    .pay-row { display: flex; flex-direction: column; gap: 8px; }
-    .pay-btn {
-      display: block; text-align: center; text-decoration: none;
-      padding: 10px; border-radius: 8px; font-weight: 700; font-size: 0.8rem;
-      letter-spacing: 1px; text-transform: uppercase; transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .pay-btn:hover { transform: translateY(-2px); }
-    .pay-paypal { background: #0070ba; color: #fff; }
-    .pay-paypal:hover { box-shadow: 0 8px 20px rgba(0,112,186,0.4); }
-    .pay-cashapp { background: #00d632; color: #06210d; }
-    .pay-cashapp:hover { box-shadow: 0 8px 20px rgba(0,214,50,0.4); }
-    .pay-stripe { background: linear-gradient(90deg, var(--pink), var(--red)); color: #08080b; }
-    .pay-stripe:hover { box-shadow: 0 8px 20px rgba(200,50,74,0.4); }
-    .policy {
-      max-width: 950px; margin: 30px auto 0; padding: 18px 24px;
-      background: rgba(200,50,74,0.08); border: 1px solid rgba(200,50,74,0.25);
-      border-radius: 12px; text-align: center; font-size: 0.9rem; color: var(--text);
-    }
-    .policy strong { color: var(--pink); }
+
     .form-wrap {
       max-width: 680px; margin: 0 auto;
       background: linear-gradient(160deg, var(--surface), var(--surface-2));
@@ -111,6 +97,38 @@
       transition: transform 0.18s, box-shadow 0.18s;
     }
     .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200, 50, 74, 0.4); }
+
+    /* Payment section */
+    .pay-wrap {
+      max-width: 680px; margin: 0 auto;
+      background: linear-gradient(160deg, var(--surface), var(--surface-2));
+      border: 1px solid rgba(200, 50, 74, 0.2); border-radius: 18px; padding: 40px; text-align: center;
+    }
+    .pay-intro { color: var(--muted); font-size: 0.95rem; margin-bottom: 8px; }
+    .deposit-table {
+      max-width: 480px; margin: 20px auto 28px; text-align: left;
+      font-size: 0.85rem; color: var(--muted);
+    }
+    .deposit-table .row {
+      display: flex; justify-content: space-between; padding: 8px 0;
+      border-bottom: 1px solid rgba(200,50,74,0.12);
+    }
+    .deposit-table .row span:last-child { color: var(--red); font-weight: 600; }
+    .pay-methods { display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 0 auto; }
+    .pay-btn {
+      display: block; text-align: center; text-decoration: none;
+      padding: 14px; border-radius: 8px; font-weight: 700; font-size: 0.88rem;
+      letter-spacing: 1px; text-transform: uppercase; transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .pay-btn:hover { transform: translateY(-2px); }
+    .pay-paypal { background: #0070ba; color: #fff; }
+    .pay-paypal:hover { box-shadow: 0 8px 20px rgba(0,112,186,0.4); }
+    .pay-cashapp { background: #00d632; color: #06210d; }
+    .pay-cashapp:hover { box-shadow: 0 8px 20px rgba(0,214,50,0.4); }
+    .pay-stripe { background: linear-gradient(90deg, var(--pink), var(--red)); color: #08080b; }
+    .pay-stripe:hover { box-shadow: 0 8px 20px rgba(200,50,74,0.4); }
+    .pay-reminder { font-size: 0.8rem; color: var(--muted); margin-top: 20px; font-style: italic; }
+
     .action-card {
       max-width: 680px; margin: 0 auto;
       background: linear-gradient(160deg, var(--surface), var(--surface-2));
@@ -124,7 +142,6 @@
       text-transform: uppercase; font-size: 0.82rem; transition: transform 0.18s, box-shadow 0.18s;
     }
     .discord-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(88, 101, 242, 0.4); }
-    .pay-note { font-size: 0.78rem; color: var(--muted); margin-top: 14px; font-style: italic; }
   </style>
 </head>
 <body>
@@ -140,13 +157,14 @@
     <div class="start-hero-inner">
       <img src="assets/logo.png" alt="Nilcipher Systems" class="start-logo">
       <h1>Start a Project</h1>
-      <p class="tagline">Pick a service — then choose your bundle.</p>
+      <p class="tagline">Browse · Submit · Pay your deposit</p>
     </div>
   </header>
 
+  <!-- BROWSE -->
   <section class="section reveal">
     <h2>What do you need?</h2>
-    <p class="about-text">Choose a service to see its bundles.</p>
+    <p class="about-text">Choose a service to see its bundles and pricing.</p>
     <div class="category-grid">
       <div class="cat-btn" onclick="showCategory('websites', this)">
         <div class="cat-icon">&lt;/&gt;</div><h3>Websites</h3><p>Custom, responsive sites</p>
@@ -163,121 +181,48 @@
     </div>
   </section>
 
+  <!-- BUNDLES (info only) -->
   <section class="section bundles" id="bundles-websites">
     <h2>Website Bundles</h2>
     <div class="bundle-grid">
-      <div class="bundle">
-        <div class="bundle-name">Starter</div><div class="bundle-price">$75</div>
-        <div class="bundle-deposit">25% deposit: $18.75 to begin</div>
-        <ul><li>1-page site</li><li>Fully responsive</li><li>Contact form</li><li>You own the code</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
-      <div class="bundle">
-        <div class="bundle-name">Business</div><div class="bundle-price">$150</div>
-        <div class="bundle-deposit">25% deposit: $37.50 to begin</div>
-        <ul><li>Up to 4 pages</li><li>Custom design</li><li>Light SEO</li><li>Opt-in form</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
-      <div class="bundle">
-        <div class="bundle-name">Advanced</div><div class="bundle-price">$250</div>
-        <div class="bundle-deposit">25% deposit: $62.50 to begin</div>
-        <ul><li>6+ pages</li><li>Custom animations</li><li>Speed + SEO</li><li>The full package</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
+      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$75</div><div class="bundle-deposit">Deposit: $18.75</div><ul><li>1-page site</li><li>Fully responsive</li><li>Contact form</li><li>You own the code</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Business</div><div class="bundle-price">$150</div><div class="bundle-deposit">Deposit: $37.50</div><ul><li>Up to 4 pages</li><li>Custom design</li><li>Light SEO</li><li>Opt-in form</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Advanced</div><div class="bundle-price">$250</div><div class="bundle-deposit">Deposit: $62.50</div><ul><li>6+ pages</li><li>Custom animations</li><li>Speed + SEO</li><li>The full package</li></ul></div>
     </div>
   </section>
 
   <section class="section bundles" id="bundles-bots">
     <h2>Bot Bundles</h2>
     <div class="bundle-grid">
-      <div class="bundle">
-        <div class="bundle-name">Starter</div><div class="bundle-price">$50</div>
-        <div class="bundle-deposit">25% deposit: $12.50 to begin</div>
-        <ul><li>Basic Discord bot</li><li>A few core commands</li><li>One main feature</li><li>Setup included</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
-      <div class="bundle">
-        <div class="bundle-name">Standard</div><div class="bundle-price">$120</div>
-        <div class="bundle-deposit">25% deposit: $30 to begin</div>
-        <ul><li>Moderation + roles</li><li>Database-backed</li><li>Multiple features</li><li>Slash commands</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
-      <div class="bundle">
-        <div class="bundle-name">Premium</div><div class="bundle-price">$250</div>
-        <div class="bundle-deposit">25% deposit: $62.50 to begin</div>
-        <ul><li>Full custom bot</li><li>Tiered access control</li><li>Dashboard / panels</li><li>Ongoing structure</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
+      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$50</div><div class="bundle-deposit">Deposit: $12.50</div><ul><li>Basic Discord bot</li><li>A few core commands</li><li>One main feature</li><li>Setup included</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Standard</div><div class="bundle-price">$120</div><div class="bundle-deposit">Deposit: $30</div><ul><li>Moderation + roles</li><li>Database-backed</li><li>Multiple features</li><li>Slash commands</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Premium</div><div class="bundle-price">$250</div><div class="bundle-deposit">Deposit: $62.50</div><ul><li>Full custom bot</li><li>Tiered access control</li><li>Dashboard / panels</li><li>Ongoing structure</li></ul></div>
     </div>
   </section>
 
   <section class="section bundles" id="bundles-apps">
     <h2>App Bundles</h2>
     <div class="bundle-grid">
-      <div class="bundle">
-        <div class="bundle-name">Starter</div><div class="bundle-price">$150</div>
-        <div class="bundle-deposit">25% deposit: $37.50 to begin</div>
-        <ul><li>Simple app or script</li><li>Single core function</li><li>Clean, documented code</li><li>You own it</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
-      <div class="bundle">
-        <div class="bundle-name">Standard</div><div class="bundle-price">$350</div>
-        <div class="bundle-deposit">25% deposit: $87.50 to begin</div>
-        <ul><li>Multi-feature app</li><li>Database integration</li><li>API connections</li><li>Testing included</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
-      <div class="bundle">
-        <div class="bundle-name">Premium</div><div class="bundle-price">$600</div>
-        <div class="bundle-deposit">25% deposit: $150 to begin</div>
-        <ul><li>Full-stack build</li><li>Complex logic</li><li>Custom architecture</li><li>Deployment support</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
+      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$150</div><div class="bundle-deposit">Deposit: $37.50</div><ul><li>Simple app or script</li><li>Single core function</li><li>Clean, documented code</li><li>You own it</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Standard</div><div class="bundle-price">$350</div><div class="bundle-deposit">Deposit: $87.50</div><ul><li>Multi-feature app</li><li>Database integration</li><li>API connections</li><li>Testing included</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Premium</div><div class="bundle-price">$600</div><div class="bundle-deposit">Deposit: $150</div><ul><li>Full-stack build</li><li>Complex logic</li><li>Custom architecture</li><li>Deployment support</li></ul></div>
     </div>
   </section>
 
   <section class="section bundles" id="bundles-automation">
     <h2>Automation Bundles</h2>
     <div class="bundle-grid">
-      <div class="bundle">
-        <div class="bundle-name">Starter</div><div class="bundle-price">$40</div>
-        <div class="bundle-deposit">25% deposit: $10 to begin</div>
-        <ul><li>Single script</li><li>One task automated</li><li>Clean, reusable code</li><li>Setup notes</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
-      <div class="bundle">
-        <div class="bundle-name">Standard</div><div class="bundle-price">$100</div>
-        <div class="bundle-deposit">25% deposit: $25 to begin</div>
-        <ul><li>Multi-step workflow</li><li>Scheduled runs</li><li>Error handling</li><li>Documentation</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
-      <div class="bundle">
-        <div class="bundle-name">Premium</div><div class="bundle-price">$200</div>
-        <div class="bundle-deposit">25% deposit: $50 to begin</div>
-        <ul><li>Complex system</li><li>Multiple integrations</li><li>Monitoring / logging</li><li>Ongoing reliability</li></ul>
-        <div class="pay-label">Pay deposit with:</div>
-        <div class="pay-row"><a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">PayPal</a><a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
-      </div>
+      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$40</div><div class="bundle-deposit">Deposit: $10</div><ul><li>Single script</li><li>One task automated</li><li>Clean, reusable code</li><li>Setup notes</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Standard</div><div class="bundle-price">$100</div><div class="bundle-deposit">Deposit: $25</div><ul><li>Multi-step workflow</li><li>Scheduled runs</li><li>Error handling</li><li>Documentation</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Premium</div><div class="bundle-price">$200</div><div class="bundle-deposit">Deposit: $50</div><ul><li>Complex system</li><li>Multiple integrations</li><li>Monitoring / logging</li><li>Ongoing reliability</li></ul></div>
     </div>
   </section>
 
-  <div class="policy reveal">
-    <strong>How payment works:</strong> A 25% deposit gets your project started. The remaining 75% is due on completion, before final delivery. Pay the deposit above, then fill out the order form below.
-  </div>
-
+  <!-- STEP 1: ORDER FORM -->
   <section class="section reveal">
-    <h2>Order Details</h2>
-    <p class="about-text">Tell me about your project and I'll confirm next steps.</p>
+    <span class="step-eyebrow">Step 1</span>
+    <h2>Submit Your Order</h2>
+    <p class="about-text">Tell me about your project so I know exactly what to build.</p>
     <div class="form-wrap">
       <form action="https://formspree.io/f/mojogvnd" method="POST">
         <div class="form-group">
@@ -299,7 +244,7 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="bundle">Bundle / Budget</label>
+          <label for="bundle">Bundle</label>
           <input type="text" id="bundle" name="bundle" placeholder="e.g. Business ($150), or 'not sure'">
         </div>
         <div class="req-block" id="req-Website">
@@ -330,14 +275,39 @@
           <label for="timeline">Timeline (optional)</label>
           <input type="text" id="timeline" name="timeline" placeholder="e.g. 'within 2 weeks'">
         </div>
-        <p class="form-note" style="margin-bottom:20px;">
-          By ordering you agree to the 25% deposit to begin, balance due on completion.
-        </p>
         <button type="submit" class="submit-btn">Send Order Request</button>
       </form>
     </div>
   </section>
 
+  <!-- STEP 2: PAYMENT -->
+  <section class="section reveal">
+    <span class="step-eyebrow">Step 2</span>
+    <h2>Pay Your Deposit</h2>
+    <div class="pay-wrap">
+      <p class="pay-intro">
+        A <strong style="color:var(--pink)">25% deposit</strong> gets your project started.
+        The remaining 75% is due on completion, before final delivery.
+      </p>
+      <p class="pay-intro">Send the deposit for your chosen bundle:</p>
+      <div class="deposit-table">
+        <div class="row"><span>Website — Starter / Business / Advanced</span><span>$18.75 / $37.50 / $62.50</span></div>
+        <div class="row"><span>Bot — Starter / Standard / Premium</span><span>$12.50 / $30 / $62.50</span></div>
+        <div class="row"><span>App — Starter / Standard / Premium</span><span>$37.50 / $87.50 / $150</span></div>
+        <div class="row"><span>Automation — Starter / Standard / Premium</span><span>$10 / $25 / $50</span></div>
+      </div>
+      <div class="pay-methods">
+        <a href="https://paypal.me/nilciphersystems" target="_blank" class="pay-btn pay-paypal">Pay with PayPal</a>
+        <a href="https://cash.app/$nilciphersystems" target="_blank" class="pay-btn pay-cashapp">Pay with CashApp</a>
+        <a href="#" class="pay-btn pay-stripe">Pay with Stripe</a>
+      </div>
+      <p class="pay-reminder">
+        Please enter the exact deposit amount for your bundle, and include your name so I can match your payment to your order.
+      </p>
+    </div>
+  </section>
+
+  <!-- DISCORD -->
   <section class="section reveal">
     <h2>Questions First?</h2>
     <div class="action-card">
