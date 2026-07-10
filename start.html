@@ -332,6 +332,13 @@
           <label for="timeline">Timeline (optional)</label>
           <input type="text" id="timeline" name="timeline" placeholder="e.g. 'within 2 weeks'">
         </div>
+
+        <!-- Auto-filled pricing breakdown (sent with the order email) -->
+        <input type="hidden" id="hidden-bundle"    name="Bundle selected">
+        <input type="hidden" id="hidden-total"     name="Total price">
+        <input type="hidden" id="hidden-deposit"   name="Deposit due now (25%)">
+        <input type="hidden" id="hidden-remaining" name="Remaining balance (75%)">
+
         <button type="submit" class="submit-btn" id="submit-btn">Send Order Request</button>
         <div class="form-status" id="form-status"></div>
       </form>
@@ -417,6 +424,13 @@
       App:        ["$32.50", "$68.75", "$125.00"],
       Automation: ["$11.25", "$27.50", "$55.00"]
     };
+    // Numeric totals (used to compute the deposit / remaining breakdown for the order email)
+    const PRICES = {
+      Website:    [120, 225, 400],
+      Bot:        [90, 175, 350],
+      App:        [130, 275, 500],
+      Automation: [45, 110, 220]
+    };
     const BUNDLE_LABELS = {
       Website:    ["Starter", "Business", "Advanced"],
       Bot:        ["Starter", "Standard", "Premium"],
@@ -462,10 +476,44 @@
 
       // Convenience: mirror the Step 1 choice into Step 2 automatically
       syncStep2FromStep1();
+      updateHiddenPricing();
     }
 
     function onBundleChange() {
       syncStep2FromStep1();
+      updateHiddenPricing();
+    }
+
+    // Fill the hidden fields so the order email includes the exact price breakdown
+    function updateHiddenPricing() {
+      const service = document.getElementById('service').value;
+      const idx = document.getElementById('bundle').value;
+      const fmt = (n) => '$' + n.toFixed(2);
+
+      const set = (id, val) => { document.getElementById(id).value = val; };
+
+      if (service === 'Custom') {
+        set('hidden-bundle', 'Custom Order — quote to be discussed');
+        set('hidden-total', 'TBD (custom quote)');
+        set('hidden-deposit', 'TBD (25% of final quote)');
+        set('hidden-remaining', 'TBD (remaining 75%)');
+        return;
+      }
+
+      if (service && PRICES[service] && idx !== '' && idx !== undefined) {
+        const total = PRICES[service][idx];
+        const deposit = total * 0.25;
+        const remaining = total - deposit;
+        set('hidden-bundle', service + ' — ' + BUNDLE_LABELS[service][idx] + ' (' + fmt(total) + ')');
+        set('hidden-total', fmt(total));
+        set('hidden-deposit', fmt(deposit));
+        set('hidden-remaining', fmt(remaining));
+      } else {
+        set('hidden-bundle', '');
+        set('hidden-total', '');
+        set('hidden-deposit', '');
+        set('hidden-remaining', '');
+      }
     }
 
     // Copy Step 1's service+bundle into Step 2's selectors (as a helpful default)
