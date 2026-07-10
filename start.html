@@ -7,238 +7,278 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="assets/logo.png">
   <style>
-    /* ===== Start-page-specific styles ===== */
-    .start-hero {
-      text-align: center;
-      padding: 70px 20px 40px;
-      position: relative;
-    }
+    .start-hero { text-align: center; padding: 70px 20px 30px; position: relative; }
     .start-hero .hero-glow {
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 300px;
+      position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
       background: radial-gradient(ellipse, rgba(200, 50, 74, 0.22), transparent 70%);
-      filter: blur(40px);
-      z-index: 0;
+      filter: blur(40px); z-index: 0;
     }
     .start-hero-inner { position: relative; z-index: 1; }
     .start-logo {
-      width: 90px;
-      border-radius: 14px;
-      border: 1px solid rgba(200, 50, 74, 0.35);
-      padding: 5px;
-      background: rgba(19, 19, 25, 0.5);
-      box-shadow: 0 0 30px rgba(200, 50, 74, 0.25);
-      margin-bottom: 22px;
+      width: 90px; border-radius: 14px; border: 1px solid rgba(200, 50, 74, 0.35);
+      padding: 5px; background: rgba(19, 19, 25, 0.5);
+      box-shadow: 0 0 30px rgba(200, 50, 74, 0.25); margin-bottom: 22px;
     }
     .back-link {
-      position: absolute;
-      top: 24px;
-      left: 30px;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      z-index: 10;
-      transition: color 0.2s;
+      position: absolute; top: 24px; left: 30px; color: var(--muted);
+      text-decoration: none; font-size: 0.85rem; letter-spacing: 1px;
+      text-transform: uppercase; z-index: 10; transition: color 0.2s;
     }
     .back-link:hover { color: var(--pink); }
-
-    /* Package strip */
-    .pkg-strip {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 18px;
-      max-width: 900px;
-      margin: 0 auto;
+    .category-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px; max-width: 900px; margin: 10px auto 0;
     }
-    .pkg {
+    .cat-btn {
       background: linear-gradient(160deg, var(--surface), var(--surface-2));
-      border: 1px solid rgba(200, 50, 74, 0.15);
-      border-radius: 14px;
-      padding: 24px 20px;
-      text-align: left;
+      border: 1px solid rgba(200, 50, 74, 0.15); border-radius: 16px;
+      padding: 34px 22px; cursor: pointer; text-align: center;
+      transition: transform 0.2s, border-color 0.25s, box-shadow 0.25s;
     }
-    .pkg-name { color: var(--pink); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.95rem; }
-    .pkg-price { font-size: 2rem; font-weight: 800; margin: 6px 0 12px; color: var(--text); }
-    .pkg ul { list-style: none; }
-    .pkg li { font-size: 0.88rem; color: var(--muted); padding: 5px 0; }
-    .pkg li::before { content: "✓"; color: var(--red); font-weight: 700; margin-right: 8px; }
-
-    /* Form */
+    .cat-btn:hover, .cat-btn.active {
+      transform: translateY(-4px); border-color: rgba(200, 50, 74, 0.5);
+      box-shadow: 0 12px 34px rgba(0,0,0,0.4), 0 0 26px rgba(200, 50, 74, 0.12);
+    }
+    .cat-btn.active { border-color: var(--red); }
+    .cat-icon { font-size: 2rem; color: var(--red); margin-bottom: 12px; font-family: 'Consolas', monospace; }
+    .cat-btn h3 { color: var(--pink); letter-spacing: 2px; text-transform: uppercase; font-size: 1.1rem; }
+    .cat-btn p { color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
+    .bundles { display: none; margin-top: 20px; }
+    .bundles.show { display: block; animation: fadeUp 0.5s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .bundle-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px; max-width: 950px; margin: 0 auto;
+    }
+    .bundle {
+      background: linear-gradient(160deg, var(--surface), var(--surface-2));
+      border: 1px solid rgba(200, 50, 74, 0.15); border-radius: 16px;
+      padding: 30px 24px; text-align: left; position: relative;
+    }
+    .bundle-name { color: var(--pink); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 1rem; }
+    .bundle-price { font-size: 2.4rem; font-weight: 800; margin: 8px 0 4px; color: var(--text); }
+    .bundle-deposit { font-size: 0.8rem; color: var(--red); margin-bottom: 16px; letter-spacing: 1px; }
+    .bundle ul { list-style: none; margin-bottom: 20px; }
+    .bundle li { font-size: 0.9rem; color: var(--muted); padding: 6px 0; border-bottom: 1px solid rgba(200,50,74,0.1); }
+    .bundle li::before { content: "✓"; color: var(--red); font-weight: 700; margin-right: 8px; }
+    .pay-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+    .pay-row { display: flex; flex-direction: column; gap: 8px; }
+    .pay-btn {
+      display: block; text-align: center; text-decoration: none;
+      padding: 10px; border-radius: 8px; font-weight: 700; font-size: 0.8rem;
+      letter-spacing: 1px; text-transform: uppercase; transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .pay-btn:hover { transform: translateY(-2px); }
+    .pay-paypal { background: #0070ba; color: #fff; }
+    .pay-paypal:hover { box-shadow: 0 8px 20px rgba(0,112,186,0.4); }
+    .pay-cashapp { background: #00d632; color: #06210d; }
+    .pay-cashapp:hover { box-shadow: 0 8px 20px rgba(0,214,50,0.4); }
+    .pay-stripe { background: linear-gradient(90deg, var(--pink), var(--red)); color: #08080b; }
+    .pay-stripe:hover { box-shadow: 0 8px 20px rgba(200,50,74,0.4); }
+    .policy {
+      max-width: 950px; margin: 30px auto 0; padding: 18px 24px;
+      background: rgba(200,50,74,0.08); border: 1px solid rgba(200,50,74,0.25);
+      border-radius: 12px; text-align: center; font-size: 0.9rem; color: var(--text);
+    }
+    .policy strong { color: var(--pink); }
     .form-wrap {
-      max-width: 680px;
-      margin: 0 auto;
+      max-width: 680px; margin: 0 auto;
       background: linear-gradient(160deg, var(--surface), var(--surface-2));
-      border: 1px solid rgba(200, 50, 74, 0.2);
-      border-radius: 18px;
-      padding: 40px;
-      text-align: left;
+      border: 1px solid rgba(200, 50, 74, 0.2); border-radius: 18px; padding: 40px; text-align: left;
     }
     .form-group { margin-bottom: 22px; }
     .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.82rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--pink);
+      display: block; margin-bottom: 8px; font-size: 0.82rem;
+      letter-spacing: 1.5px; text-transform: uppercase; color: var(--pink);
     }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid rgba(200, 50, 74, 0.25);
-      border-radius: 8px;
-      padding: 13px 16px;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 0.95rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; background: var(--bg); border: 1px solid rgba(200, 50, 74, 0.25);
+      border-radius: 8px; padding: 13px 16px; color: var(--text);
+      font-family: inherit; font-size: 0.95rem; transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(200, 50, 74, 0.15);
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--red); box-shadow: 0 0 0 3px rgba(200, 50, 74, 0.15);
     }
-    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group textarea { resize: vertical; min-height: 110px; }
     .form-note { font-size: 0.8rem; color: var(--muted); margin-top: 6px; }
+    .req-block { display: none; }
+    .req-block.show { display: block; }
     .submit-btn {
-      width: 100%;
-      background: linear-gradient(90deg, var(--pink), var(--red));
-      color: #08080b;
-      font-weight: 700;
-      border: none;
-      padding: 15px;
-      border-radius: 8px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      cursor: pointer;
+      width: 100%; background: linear-gradient(90deg, var(--pink), var(--red));
+      color: #08080b; font-weight: 700; border: none; padding: 15px; border-radius: 8px;
+      letter-spacing: 1.5px; text-transform: uppercase; font-size: 0.9rem; cursor: pointer;
       transition: transform 0.18s, box-shadow 0.18s;
     }
-    .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(200, 50, 74, 0.4);
-    }
-
-    /* Action cards (discord + pay) */
-    .action-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      max-width: 680px;
-      margin: 0 auto;
-    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200, 50, 74, 0.4); }
     .action-card {
+      max-width: 680px; margin: 0 auto;
       background: linear-gradient(160deg, var(--surface), var(--surface-2));
-      border: 1px solid rgba(200, 50, 74, 0.15);
-      border-radius: 16px;
-      padding: 30px 26px;
-      text-align: center;
+      border: 1px solid rgba(200, 50, 74, 0.15); border-radius: 16px; padding: 30px 26px; text-align: center;
     }
     .action-card h3 { color: var(--pink); letter-spacing: 1px; margin-bottom: 10px; }
     .action-card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
     .discord-btn {
-      display: inline-block;
-      background: #5865F2;
-      color: #fff;
-      text-decoration: none;
-      padding: 13px 28px;
-      border-radius: 8px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      transition: transform 0.18s, box-shadow 0.18s;
+      display: inline-block; background: #5865F2; color: #fff; text-decoration: none;
+      padding: 13px 28px; border-radius: 8px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; font-size: 0.82rem; transition: transform 0.18s, box-shadow 0.18s;
     }
-    .discord-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(88, 101, 242, 0.4);
-    }
-    .pay-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 14px;
-      font-style: italic;
-    }
+    .discord-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(88, 101, 242, 0.4); }
+    .pay-note { font-size: 0.78rem; color: var(--muted); margin-top: 14px; font-style: italic; }
   </style>
 </head>
 <body>
 
-  <!-- ambient background -->
   <div class="bg-grid"></div>
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
 
   <a href="index.html" class="back-link">← Back</a>
 
-  <!-- ===== HERO ===== -->
   <header class="start-hero">
     <div class="hero-glow"></div>
     <div class="start-hero-inner">
       <img src="assets/logo.png" alt="Nilcipher Systems" class="start-logo">
       <h1>Start a Project</h1>
-      <p class="tagline">Tell me what you need — let's build it.</p>
+      <p class="tagline">Pick a service — then choose your bundle.</p>
     </div>
   </header>
 
-  <!-- ===== PACKAGES RECAP ===== -->
   <section class="section reveal">
-    <h2>Packages</h2>
-    <p class="about-text">Pick a starting point — we'll fine-tune the details together.</p>
-    <div class="pkg-strip">
-      <div class="pkg">
-        <div class="pkg-name">Starter</div>
-        <div class="pkg-price">$75</div>
-        <ul>
-          <li>1-page site</li>
-          <li>Fully responsive</li>
-          <li>Contact form</li>
-          <li>You own the code</li>
-        </ul>
+    <h2>What do you need?</h2>
+    <p class="about-text">Choose a service to see its bundles.</p>
+    <div class="category-grid">
+      <div class="cat-btn" onclick="showCategory('websites', this)">
+        <div class="cat-icon">&lt;/&gt;</div><h3>Websites</h3><p>Custom, responsive sites</p>
       </div>
-      <div class="pkg">
-        <div class="pkg-name">Business</div>
-        <div class="pkg-price">$150</div>
-        <ul>
-          <li>Up to 4 pages</li>
-          <li>Custom design</li>
-          <li>Light SEO</li>
-          <li>Opt-in form</li>
-        </ul>
+      <div class="cat-btn" onclick="showCategory('bots', this)">
+        <div class="cat-icon">⬢</div><h3>Bots</h3><p>Discord bots &amp; automation</p>
       </div>
-      <div class="pkg">
-        <div class="pkg-name">Advanced</div>
-        <div class="pkg-price">$250</div>
-        <ul>
-          <li>6+ pages</li>
-          <li>Custom animations</li>
-          <li>Speed + SEO</li>
-          <li>The full package</li>
-        </ul>
+      <div class="cat-btn" onclick="showCategory('apps', this)">
+        <div class="cat-icon">▦</div><h3>Apps</h3><p>Backend &amp; full-stack apps</p>
+      </div>
+      <div class="cat-btn" onclick="showCategory('automation', this)">
+        <div class="cat-icon">⚙</div><h3>Automation</h3><p>Scripts &amp; workflows</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== INTAKE FORM ===== -->
+  <section class="section bundles" id="bundles-websites">
+    <h2>Website Bundles</h2>
+    <div class="bundle-grid">
+      <div class="bundle">
+        <div class="bundle-name">Starter</div><div class="bundle-price">$75</div>
+        <div class="bundle-deposit">25% deposit: $18.75 to begin</div>
+        <ul><li>1-page site</li><li>Fully responsive</li><li>Contact form</li><li>You own the code</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+      <div class="bundle">
+        <div class="bundle-name">Business</div><div class="bundle-price">$150</div>
+        <div class="bundle-deposit">25% deposit: $37.50 to begin</div>
+        <ul><li>Up to 4 pages</li><li>Custom design</li><li>Light SEO</li><li>Opt-in form</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+      <div class="bundle">
+        <div class="bundle-name">Advanced</div><div class="bundle-price">$250</div>
+        <div class="bundle-deposit">25% deposit: $62.50 to begin</div>
+        <ul><li>6+ pages</li><li>Custom animations</li><li>Speed + SEO</li><li>The full package</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bundles" id="bundles-bots">
+    <h2>Bot Bundles</h2>
+    <div class="bundle-grid">
+      <div class="bundle">
+        <div class="bundle-name">Starter</div><div class="bundle-price">$50</div>
+        <div class="bundle-deposit">25% deposit: $12.50 to begin</div>
+        <ul><li>Basic Discord bot</li><li>A few core commands</li><li>One main feature</li><li>Setup included</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+      <div class="bundle">
+        <div class="bundle-name">Standard</div><div class="bundle-price">$120</div>
+        <div class="bundle-deposit">25% deposit: $30 to begin</div>
+        <ul><li>Moderation + roles</li><li>Database-backed</li><li>Multiple features</li><li>Slash commands</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+      <div class="bundle">
+        <div class="bundle-name">Premium</div><div class="bundle-price">$250</div>
+        <div class="bundle-deposit">25% deposit: $62.50 to begin</div>
+        <ul><li>Full custom bot</li><li>Tiered access control</li><li>Dashboard / panels</li><li>Ongoing structure</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bundles" id="bundles-apps">
+    <h2>App Bundles</h2>
+    <div class="bundle-grid">
+      <div class="bundle">
+        <div class="bundle-name">Starter</div><div class="bundle-price">$150</div>
+        <div class="bundle-deposit">25% deposit: $37.50 to begin</div>
+        <ul><li>Simple app or script</li><li>Single core function</li><li>Clean, documented code</li><li>You own it</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+      <div class="bundle">
+        <div class="bundle-name">Standard</div><div class="bundle-price">$350</div>
+        <div class="bundle-deposit">25% deposit: $87.50 to begin</div>
+        <ul><li>Multi-feature app</li><li>Database integration</li><li>API connections</li><li>Testing included</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+      <div class="bundle">
+        <div class="bundle-name">Premium</div><div class="bundle-price">$600</div>
+        <div class="bundle-deposit">25% deposit: $150 to begin</div>
+        <ul><li>Full-stack build</li><li>Complex logic</li><li>Custom architecture</li><li>Deployment support</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bundles" id="bundles-automation">
+    <h2>Automation Bundles</h2>
+    <div class="bundle-grid">
+      <div class="bundle">
+        <div class="bundle-name">Starter</div><div class="bundle-price">$40</div>
+        <div class="bundle-deposit">25% deposit: $10 to begin</div>
+        <ul><li>Single script</li><li>One task automated</li><li>Clean, reusable code</li><li>Setup notes</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+      <div class="bundle">
+        <div class="bundle-name">Standard</div><div class="bundle-price">$100</div>
+        <div class="bundle-deposit">25% deposit: $25 to begin</div>
+        <ul><li>Multi-step workflow</li><li>Scheduled runs</li><li>Error handling</li><li>Documentation</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+      <div class="bundle">
+        <div class="bundle-name">Premium</div><div class="bundle-price">$200</div>
+        <div class="bundle-deposit">25% deposit: $50 to begin</div>
+        <ul><li>Complex system</li><li>Multiple integrations</li><li>Monitoring / logging</li><li>Ongoing reliability</li></ul>
+        <div class="pay-label">Pay deposit with:</div>
+        <div class="pay-row"><a href="#" class="pay-btn pay-paypal">PayPal</a><a href="#" class="pay-btn pay-cashapp">CashApp</a><a href="#" class="pay-btn pay-stripe">Stripe</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="policy reveal">
+    <strong>How payment works:</strong> A 25% deposit gets your project started. The remaining 75% is due on completion, before final delivery. Pay the deposit above, then fill out the order form below.
+  </div>
+
   <section class="section reveal">
-    <h2>Project Details</h2>
-    <p class="about-text">Fill this out and I'll get back to you with next steps.</p>
+    <h2>Order Details</h2>
+    <p class="about-text">Tell me about your project and I'll confirm next steps.</p>
     <div class="form-wrap">
-      <!--
-        FORMSPREE SETUP (do later):
-        1. Go to formspree.io, sign up with nilcipher.dev@gmail.com
-        2. Create a new form, copy your form ID (looks like: xyzabcde)
-        3. Replace YOUR_FORM_ID below with it.
-      -->
       <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
         <div class="form-group">
           <label for="name">Your Name</label>
@@ -249,67 +289,85 @@
           <input type="email" id="email" name="email" required>
         </div>
         <div class="form-group">
-          <label for="package">Which package fits best?</label>
-          <select id="package" name="package">
-            <option>Starter — $75</option>
-            <option>Business — $150</option>
-            <option>Advanced — $250</option>
-            <option>Not sure yet / Custom</option>
+          <label for="service">Service</label>
+          <select id="service" name="service" onchange="showRequirements()">
+            <option value="">Select a service…</option>
+            <option value="Website">Website</option>
+            <option value="Bot">Bot</option>
+            <option value="App">App</option>
+            <option value="Automation">Automation</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="project">Describe your project</label>
-          <textarea id="project" name="project" placeholder="What are you building? What's the goal? Any features you need?" required></textarea>
-          <p class="form-note">The more detail, the faster I can scope it.</p>
+          <label for="bundle">Bundle / Budget</label>
+          <input type="text" id="bundle" name="bundle" placeholder="e.g. Business ($150), or 'not sure'">
+        </div>
+        <div class="req-block" id="req-Website">
+          <div class="form-group">
+            <label for="web-req">Website details</label>
+            <textarea id="web-req" name="website_details" placeholder="Pages needed, purpose, style/references. Do you have your logo, images, and text ready? (I build sites — assets must be provided.)"></textarea>
+          </div>
+        </div>
+        <div class="req-block" id="req-Bot">
+          <div class="form-group">
+            <label for="bot-req">Bot details</label>
+            <textarea id="bot-req" name="bot_details" placeholder="Platform (Discord?), what features/commands you need, do you have a server, any existing bot to modify?"></textarea>
+          </div>
+        </div>
+        <div class="req-block" id="req-App">
+          <div class="form-group">
+            <label for="app-req">App details</label>
+            <textarea id="app-req" name="app_details" placeholder="What should the app do? Web or desktop? Any existing code, data, or APIs to work with?"></textarea>
+          </div>
+        </div>
+        <div class="req-block" id="req-Automation">
+          <div class="form-group">
+            <label for="auto-req">Automation details</label>
+            <textarea id="auto-req" name="automation_details" placeholder="What task to automate? What tools/services are involved? How often should it run?"></textarea>
+          </div>
         </div>
         <div class="form-group">
-          <label for="budget">Budget (optional)</label>
-          <input type="text" id="budget" name="budget" placeholder="e.g. $150, or 'flexible'">
-        </div>
-        <div class="form-group">
-          <label for="deadline">Timeline (optional)</label>
-          <input type="text" id="deadline" name="deadline" placeholder="e.g. 'within 2 weeks'">
+          <label for="timeline">Timeline (optional)</label>
+          <input type="text" id="timeline" name="timeline" placeholder="e.g. 'within 2 weeks'">
         </div>
         <p class="form-note" style="margin-bottom:20px;">
-          Note: I build websites — please have your logo, images, and text content ready.
-          I don't create logos or graphics.
+          By ordering you agree to the 25% deposit to begin, balance due on completion.
         </p>
-        <button type="submit" class="submit-btn">Send Project Request</button>
+        <button type="submit" class="submit-btn">Send Order Request</button>
       </form>
     </div>
   </section>
 
-  <!-- ===== DISCORD + PAYMENT ===== -->
   <section class="section reveal">
-    <h2>Questions or Ready to Pay?</h2>
-    <div class="action-grid">
-      <div class="action-card">
-        <h3>Join the Discord</h3>
-        <p>Questions, concerns, or just want to talk it through before ordering? Come chat.</p>
-        <!-- Replace # with your Discord invite link when ready -->
-        <a href="#" class="discord-btn">Join Discord</a>
-        <p class="pay-note">Discord link coming soon</p>
-      </div>
-      <div class="action-card">
-        <h3>Make a Payment</h3>
-        <p>Already discussed your project? Pay securely to get started.</p>
-        <!--
-          PAYMENT SETUP (activate later):
-          - Create a Stripe Payment Link or PayPal.me link
-          - Replace the href="#" below with your payment link
-          - Delete the "pay-note" line once live
-        -->
-        <a href="#" class="btn">Pay Now</a>
-        <p class="pay-note">Secure checkout coming soon</p>
-      </div>
+    <h2>Questions First?</h2>
+    <div class="action-card">
+      <h3>Join the Discord</h3>
+      <p>Not sure which bundle fits, or want to talk it through before paying? Come chat — happy to help.</p>
+      <a href="https://discord.gg/5Mp6TrUCq" target="_blank" class="discord-btn">Join Discord</a>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <p>© 2026 Nilcipher Systems · Code. Automate. Elevate.</p>
   </footer>
 
+  <script>
+    function showCategory(cat, el) {
+      document.querySelectorAll('.bundles').forEach(b => b.classList.remove('show'));
+      document.querySelectorAll('.cat-btn').forEach(c => c.classList.remove('active'));
+      document.getElementById('bundles-' + cat).classList.add('show');
+      el.classList.add('active');
+      document.getElementById('bundles-' + cat).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function showRequirements() {
+      const val = document.getElementById('service').value;
+      document.querySelectorAll('.req-block').forEach(r => r.classList.remove('show'));
+      if (val) {
+        const block = document.getElementById('req-' + val);
+        if (block) block.classList.add('show');
+      }
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
