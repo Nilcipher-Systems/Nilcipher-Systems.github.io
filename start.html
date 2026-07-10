@@ -57,9 +57,32 @@
       gap: 22px; max-width: 950px; margin: 0 auto;
     }
     .bundle {
+      position: relative;
       background: linear-gradient(160deg, var(--surface), var(--surface-2));
       border: 1px solid rgba(240, 96, 62, 0.15); border-radius: 16px;
       padding: 28px 24px; text-align: left;
+      transition: transform 0.2s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .bundle:hover {
+      transform: translateY(-4px); border-color: rgba(240, 96, 62, 0.4);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.4), 0 0 26px rgba(240, 96, 62, 0.12);
+    }
+    /* Featured (top-tier) bundle — the one we want to draw the eye */
+    .bundle.featured {
+      border-color: var(--red);
+      box-shadow: 0 0 0 1px rgba(240,96,62,0.35), 0 16px 40px rgba(0,0,0,0.45), 0 0 34px rgba(240, 96, 62, 0.2);
+    }
+    .bundle.featured:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 0 1px var(--red), 0 20px 48px rgba(0,0,0,0.5), 0 0 44px rgba(240, 96, 62, 0.32);
+    }
+    .bundle-badge {
+      position: absolute; top: -12px; right: 18px;
+      background: linear-gradient(90deg, var(--amber), var(--red));
+      color: #2a1418; font-size: 0.66rem; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(240, 96, 62, 0.4);
     }
     .bundle-name { color: var(--pink); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 1rem; }
     .bundle-price { font-size: 2.2rem; font-weight: 800; margin: 8px 0 2px; color: var(--text); }
@@ -202,36 +225,36 @@
   <section class="section bundles" id="bundles-websites">
     <h2>Website Bundles</h2>
     <div class="bundle-grid">
-      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$75</div><div class="bundle-deposit">Deposit: $18.75</div><ul><li>1-page site</li><li>Fully responsive</li><li>Contact form</li><li>You own the code</li></ul></div>
-      <div class="bundle"><div class="bundle-name">Business</div><div class="bundle-price">$150</div><div class="bundle-deposit">Deposit: $37.50</div><ul><li>Up to 4 pages</li><li>Custom design</li><li>Light SEO</li><li>Opt-in form</li></ul></div>
-      <div class="bundle"><div class="bundle-name">Advanced</div><div class="bundle-price">$250</div><div class="bundle-deposit">Deposit: $62.50</div><ul><li>6+ pages</li><li>Custom animations</li><li>Speed + SEO</li><li>The full package</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$120</div><div class="bundle-deposit">Deposit: $30</div><ul><li>1-page site</li><li>Fully responsive</li><li>Contact form</li><li>You own the code</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Business</div><div class="bundle-price">$225</div><div class="bundle-deposit">Deposit: $56.25</div><ul><li>Up to 4 pages</li><li>Custom design</li><li>Light SEO</li><li>Opt-in form</li></ul></div>
+      <div class="bundle featured"><div class="bundle-badge">Best value</div><div class="bundle-name">Advanced</div><div class="bundle-price">$400</div><div class="bundle-deposit">Deposit: $100</div><ul><li>6+ pages</li><li>Custom animations</li><li>Speed + SEO</li><li>The full package</li></ul></div>
     </div>
   </section>
 
   <section class="section bundles" id="bundles-bots">
     <h2>Bot Bundles</h2>
     <div class="bundle-grid">
-      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$50</div><div class="bundle-deposit">Deposit: $12.50</div><ul><li>Basic Discord bot</li><li>A few core commands</li><li>One main feature</li><li>Setup included</li></ul></div>
-      <div class="bundle"><div class="bundle-name">Standard</div><div class="bundle-price">$120</div><div class="bundle-deposit">Deposit: $30</div><ul><li>Moderation + roles</li><li>Database-backed</li><li>Multiple features</li><li>Slash commands</li></ul></div>
-      <div class="bundle"><div class="bundle-name">Premium</div><div class="bundle-price">$250</div><div class="bundle-deposit">Deposit: $62.50</div><ul><li>Full custom bot</li><li>Tiered access control</li><li>Dashboard / panels</li><li>Ongoing structure</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$90</div><div class="bundle-deposit">Deposit: $22.50</div><ul><li>Basic Discord bot</li><li>A few core commands</li><li>One main feature</li><li>Setup included</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Standard</div><div class="bundle-price">$175</div><div class="bundle-deposit">Deposit: $43.75</div><ul><li>Moderation + roles</li><li>Database-backed</li><li>Multiple features</li><li>Slash commands</li></ul></div>
+      <div class="bundle featured"><div class="bundle-badge">Best value</div><div class="bundle-name">Premium</div><div class="bundle-price">$350</div><div class="bundle-deposit">Deposit: $87.50</div><ul><li>Full custom bot</li><li>Tiered access control</li><li>Dashboard / panels</li><li>Ongoing structure</li></ul></div>
     </div>
   </section>
 
   <section class="section bundles" id="bundles-apps">
     <h2>App Bundles</h2>
     <div class="bundle-grid">
-      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$150</div><div class="bundle-deposit">Deposit: $37.50</div><ul><li>Simple app or script</li><li>Single core function</li><li>Clean, documented code</li><li>You own it</li></ul></div>
-      <div class="bundle"><div class="bundle-name">Standard</div><div class="bundle-price">$350</div><div class="bundle-deposit">Deposit: $87.50</div><ul><li>Multi-feature app</li><li>Database integration</li><li>API connections</li><li>Testing included</li></ul></div>
-      <div class="bundle"><div class="bundle-name">Premium</div><div class="bundle-price">$600</div><div class="bundle-deposit">Deposit: $150</div><ul><li>Full-stack build</li><li>Complex logic</li><li>Custom architecture</li><li>Deployment support</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$130</div><div class="bundle-deposit">Deposit: $32.50</div><ul><li>Simple app or script</li><li>Single core function</li><li>Clean, documented code</li><li>You own it</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Standard</div><div class="bundle-price">$275</div><div class="bundle-deposit">Deposit: $68.75</div><ul><li>Multi-feature app</li><li>Database integration</li><li>API connections</li><li>Testing included</li></ul></div>
+      <div class="bundle featured"><div class="bundle-badge">Best value</div><div class="bundle-name">Premium</div><div class="bundle-price">$500</div><div class="bundle-deposit">Deposit: $125</div><ul><li>Full-stack build</li><li>Complex logic</li><li>Custom architecture</li><li>Deployment support</li></ul></div>
     </div>
   </section>
 
   <section class="section bundles" id="bundles-automation">
     <h2>Automation Bundles</h2>
     <div class="bundle-grid">
-      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$40</div><div class="bundle-deposit">Deposit: $10</div><ul><li>Single script</li><li>One task automated</li><li>Clean, reusable code</li><li>Setup notes</li></ul></div>
-      <div class="bundle"><div class="bundle-name">Standard</div><div class="bundle-price">$100</div><div class="bundle-deposit">Deposit: $25</div><ul><li>Multi-step workflow</li><li>Scheduled runs</li><li>Error handling</li><li>Documentation</li></ul></div>
-      <div class="bundle"><div class="bundle-name">Premium</div><div class="bundle-price">$200</div><div class="bundle-deposit">Deposit: $50</div><ul><li>Complex system</li><li>Multiple integrations</li><li>Monitoring / logging</li><li>Ongoing reliability</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Starter</div><div class="bundle-price">$45</div><div class="bundle-deposit">Deposit: $11.25</div><ul><li>Single script</li><li>One task automated</li><li>Clean, reusable code</li><li>Setup notes</li></ul></div>
+      <div class="bundle"><div class="bundle-name">Standard</div><div class="bundle-price">$110</div><div class="bundle-deposit">Deposit: $27.50</div><ul><li>Multi-step workflow</li><li>Scheduled runs</li><li>Error handling</li><li>Documentation</li></ul></div>
+      <div class="bundle featured"><div class="bundle-badge">Best value</div><div class="bundle-name">Premium</div><div class="bundle-price">$220</div><div class="bundle-deposit">Deposit: $55</div><ul><li>Complex system</li><li>Multiple integrations</li><li>Monitoring / logging</li><li>Ongoing reliability</li></ul></div>
     </div>
   </section>
 
@@ -355,7 +378,6 @@
           <option value="">Select…</option>
           <option value="paypal">PayPal</option>
           <option value="cashapp">CashApp</option>
-          <option value="stripe">Stripe</option>
         </select>
       </div>
 
@@ -367,13 +389,13 @@
     </div>
   </section>
 
-  <!-- DISCORD -->
+  <!-- CONTACT -->
   <section class="section reveal">
     <h2>Questions First?</h2>
-    <div class="action-card">
-      <h3>Join the Discord</h3>
-      <p>Not sure which bundle fits, or want a custom quote? Come chat — happy to help.</p>
-      <a href="https://discord.gg/5Mp6TrUCq" target="_blank" class="discord-btn">Join Discord</a>
+    <p class="about-text">Not sure which bundle fits, or want a custom quote? Reach out — happy to help.</p>
+    <div class="contact-buttons">
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nilcipher.dev@gmail.com" target="_blank" class="btn">Email Me</a>
+      <a href="https://discord.gg/5Mp6TrUCq" target="_blank" class="btn btn-outline">Discord</a>
     </div>
   </section>
 
@@ -384,16 +406,16 @@
   <script>
     // ===== Data =====
     const BUNDLES = {
-      Website:    ["Starter ($75)", "Business ($150)", "Advanced ($250)"],
-      Bot:        ["Starter ($50)", "Standard ($120)", "Premium ($250)"],
-      App:        ["Starter ($150)", "Standard ($350)", "Premium ($600)"],
-      Automation: ["Starter ($40)", "Standard ($100)", "Premium ($200)"]
+      Website:    ["Starter ($120)", "Business ($225)", "Advanced ($400)"],
+      Bot:        ["Starter ($90)", "Standard ($175)", "Premium ($350)"],
+      App:        ["Starter ($130)", "Standard ($275)", "Premium ($500)"],
+      Automation: ["Starter ($45)", "Standard ($110)", "Premium ($220)"]
     };
     const DEPOSITS = {
-      Website:    ["$18.75", "$37.50", "$62.50"],
-      Bot:        ["$12.50", "$30.00", "$62.50"],
-      App:        ["$37.50", "$87.50", "$150.00"],
-      Automation: ["$10.00", "$25.00", "$50.00"]
+      Website:    ["$30.00", "$56.25", "$100.00"],
+      Bot:        ["$22.50", "$43.75", "$87.50"],
+      App:        ["$32.50", "$68.75", "$125.00"],
+      Automation: ["$11.25", "$27.50", "$55.00"]
     };
     const BUNDLE_LABELS = {
       Website:    ["Starter", "Business", "Advanced"],
@@ -403,8 +425,7 @@
     };
     const PAY_LINKS = {
       paypal:  "https://paypal.me/nilciphersystems",
-      cashapp: "https://cash.app/$nilciphersystems",
-      stripe:  "#"   // <-- replace with your Stripe payment link when ready
+      cashapp: "https://cash.app/$nilciphersystems"
     };
 
     // ===== Browse =====
