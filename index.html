@@ -23,34 +23,24 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#skills">Skills</a>
+      <a href="#stack">Stack</a>
       <a href="#projects">Projects</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#contact">Contact</a>
+      <a href="#faq">FAQ</a>
     </div>
   </nav>
 
-  <!-- ===== HERO ===== -->
+  <!-- ===== BANNER AT TOP ===== -->
+  <div class="banner-band reveal">
+    <img src="assets/banner.png" alt="Nilcipher Systems — We Code. We Automate. We Elevate.">
+  </div>
+
+  <!-- ===== HERO (no boot terminal) ===== -->
   <header class="hero">
     <div class="hero-glow"></div>
     <div class="hero-inner">
       <img src="assets/logo.png" alt="Nilcipher Systems" class="hero-logo">
-
-      <div class="terminal">
-        <div class="terminal-bar">
-          <span class="dot dot-red"></span>
-          <span class="dot dot-yellow"></span>
-          <span class="dot dot-green"></span>
-          <span class="terminal-title">nilcipher — bash</span>
-        </div>
-        <div class="terminal-body">
-          <pre id="boot"></pre><span class="cursor" id="cursor">█</span>
-        </div>
-      </div>
-
       <h1>Nilcipher Systems</h1>
       <p class="tagline">Code. Automate. Elevate.</p>
-      <a href="start.html" class="btn">Start a Project</a>
     </div>
   </header>
 
@@ -59,36 +49,13 @@
     <h2>About</h2>
     <div class="about-text">
       <p>
-        Nilcipher Systems was founded on a simple belief: that great software
-        should be built <em>for the individual</em> — not forced through a
-        one-size-fits-all template. This is a studio for people who want
-        something made specifically for them: a website that's truly theirs,
-        a bot shaped around how they actually work, a tool that solves their
-        exact problem.
-      </p>
-      <p>
-        But it's meant to be more than a service. Nilcipher is a place where
-        developers and clients can actually talk — a community where you can
-        discuss ideas, ask questions, and stay connected. If you're running
-        something I built, like MonitorBot, you can come back anytime and say
-        "hey, can you add this?" and we build it together. Software should be a
-        relationship, not a one-time transaction.
-      </p>
-      <p>
-        And this is personal. As a Puerto Rican founder, building this matters
-        to me because I want to prove something: intelligence isn't a talent
-        you're born with — it's <em>acquired</em>. Anyone, from anywhere, can
-        learn to build real things given the time and the will to try. Nilcipher
-        is my proof of that, and hopefully a little encouragement for the next
-        person who was told they couldn't.
+        My name is Abiud Gonzalez, founder of Nilcipher Systems. I started this
+        company to give people something built specifically for them — real,
+        custom software instead of a premade template. Whatever you need, I build
+        it around you.
       </p>
     </div>
   </section>
-
-  <!-- ===== BANNER BAND ===== -->
-  <div class="banner-band reveal">
-    <img src="assets/banner.png" alt="Nilcipher Systems — We Code. We Automate. We Elevate.">
-  </div>
 
   <!-- ===== SERVICES ===== -->
   <section id="services" class="section reveal">
@@ -117,47 +84,28 @@
     </div>
   </section>
 
-  <!-- ===== SKILLS ===== -->
-  <section id="skills" class="section reveal">
-    <h2>Skills</h2>
-    <p class="about-text">Where I stand across the tools I work with.</p>
-    <div class="skills-list">
-      <div class="skill">
-        <div class="skill-head"><span>Python</span><span class="skill-level">Pro</span></div>
-        <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-head"><span>Discord.py</span><span class="skill-level">Pro</span></div>
-        <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-head"><span>SQL</span><span class="skill-level">Pro</span></div>
-        <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-head"><span>CSS</span><span class="skill-level">Pro</span></div>
-        <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-head"><span>HTML</span><span class="skill-level">Intermediate</span></div>
-        <div class="skill-bar"><div class="skill-fill" data-level="60"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-head"><span>JavaScript</span><span class="skill-level">Intermediate</span></div>
-        <div class="skill-bar"><div class="skill-fill" data-level="60"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-head"><span>API Integration</span><span class="skill-level">Intermediate</span></div>
-        <div class="skill-bar"><div class="skill-fill" data-level="60"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-head"><span>API Development</span><span class="skill-level">Intermediate</span></div>
-        <div class="skill-bar"><div class="skill-fill" data-level="60"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-head"><span>Git / GitHub</span><span class="skill-level">Pro</span></div>
-        <div class="skill-bar"><div class="skill-fill" data-level="90"></div></div>
-      </div>
+  <!-- ===== STACK ===== -->
+  <section id="stack" class="section reveal">
+    <h2>Stack</h2>
+    <p class="about-text">The languages and tools I build with.</p>
+
+    <h3 class="stack-label">Languages</h3>
+    <div class="chip-row">
+      <span class="chip">Python</span>
+      <span class="chip">JavaScript</span>
+      <span class="chip">HTML</span>
+      <span class="chip">CSS</span>
+      <span class="chip">SQL</span>
+    </div>
+
+    <h3 class="stack-label">Tools &amp; Frameworks</h3>
+    <div class="chip-row">
+      <span class="chip">Discord.py</span>
+      <span class="chip">Git &amp; GitHub</span>
+      <span class="chip">SQLite</span>
+      <span class="chip">REST APIs</span>
+      <span class="chip">API Integration</span>
+      <span class="chip">Automation</span>
     </div>
   </section>
 
@@ -186,10 +134,10 @@
     </div>
   </section>
 
-  <!-- ===== REVIEWS / TESTIMONIALS ===== -->
+  <!-- ===== REVIEWS ===== -->
   <section id="reviews" class="section reveal">
     <h2>Reviews</h2>
-    <p class="about-text">Verified feedback from real clients — coming soon.</p>
+    <p class="about-text">Feedback from real clients — coming soon.</p>
     <!-- Paste real review cards here as you receive them. Template:
     <div class="grid">
       <div class="card review-card">
@@ -201,39 +149,44 @@
     -->
   </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section id="contact" class="section reveal">
-    <h2>Contact</h2>
-    <p class="about-text">Have a project in mind? Let's build it.</p>
+  <!-- ===== START A PROJECT (near bottom) ===== -->
+  <section id="start" class="section reveal">
+    <h2>Start a Project</h2>
+    <p class="about-text">Ready to build something? Browse bundles, submit your order, and pay your deposit — all in one place.</p>
     <div class="contact-links">
-      <a href="mailto:nilcipher.dev@gmail.com" class="btn">Email Me</a>
+      <a href="start.html" class="btn">Start a Project</a>
       <a href="https://discord.gg/5Mp6TrUCq" target="_blank" class="btn btn-outline">Discord</a>
     </div>
   </section>
 
-  <!-- ===== COMMUNITY / COMMENTS ===== -->
-  <section id="comments" class="section reveal">
-    <h2>Community</h2>
-    <p class="about-text">
-      Sign in with GitHub to join the conversation — ask questions, request
-      features, or just say hey.
-    </p>
-    <div class="giscus-wrap">
-      <script src="https://giscus.app/client.js"
-              data-repo="Nilcipher-Systems/Nilcipher-Systems.github.io"
-              data-repo-id="R_kgDOTTuaYg"
-              data-category="Announcements"
-              data-category-id="DIC_kwDOTTuaYs4DA2rk"
-              data-mapping="pathname"
-              data-strict="0"
-              data-reactions-enabled="1"
-              data-emit-metadata="0"
-              data-input-position="bottom"
-              data-theme="dark"
-              data-lang="en"
-              crossorigin="anonymous"
-              async>
-      </script>
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="section reveal">
+    <h2>FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you design logos or graphics?<span class="icon">+</span></button>
+        <div class="faq-a">No — I focus on building. Please have your logo, images, and any visual assets ready. I bring the code; you bring the branding.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How does payment work?<span class="icon">+</span></button>
+        <div class="faq-a">A 25% deposit gets your project started. The remaining 75% is due on completion, before final delivery. I accept PayPal, CashApp, and Stripe.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I own the finished work?<span class="icon">+</span></button>
+        <div class="faq-a">Yes, completely. You receive the full source code and own everything I build for you — no subscriptions, no lock-in.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What do you need from me to start?<span class="icon">+</span></button>
+        <div class="faq-a">Your project details, plus any assets (logo, images, text, existing code). The more you share up front, the faster and smoother the build.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can you do something outside the bundles?<span class="icon">+</span></button>
+        <div class="faq-a">Absolutely. Choose "Custom Order" on the Start a Project page or DM me on Discord, and we'll scope it out and set a fair quote.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What if I need changes after delivery?<span class="icon">+</span></button>
+        <div class="faq-a">Just reach out. Revisions are included during the project, and I offer ongoing support for tweaks and updates down the line. I don't disappear after delivery.</div>
+      </div>
     </div>
   </section>
 
@@ -243,5 +196,10 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    function toggleFaq(btn) {
+      btn.parentElement.classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
